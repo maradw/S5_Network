@@ -1,7 +1,6 @@
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using TMPro;
 using Photon.Pun;
@@ -37,7 +36,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
         //JoinOrCreateRoom
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = 4;
-        PhotonNetwork.JoinOrCreateRoom("basic"+ roomName, options, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom("basic"+ roomName.text, options, TypedLobby.Default);
     }
     public override void OnCreatedRoom() 
     {

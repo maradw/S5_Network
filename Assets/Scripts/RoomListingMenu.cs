@@ -12,30 +12,47 @@ public class RoomListingMenu : MonoBehaviourPunCallbacks
     [SerializeField]
     private RoomListing _roomListing;
 
-    /*[SerializeField]
-    private GameObject roomInfoPanel;
-    [SerializeField]
-    private GameObject createRoomPanel;
-    [SerializeField]
-    private GameObject roomListPanel;*/
-    // Start is called before the first frame update
+    private List<RoomListing> _listing = new List<RoomListing>();
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
 
         foreach (RoomInfo info in roomList)
         {
-            RoomListing listing = Instantiate(_roomListing, _content);
-            if (listing != null)
+            //removed
+            if (info.RemovedFromList)
             {
-                listing.SetRoomInfo(info);
+
+                int index = _listing.FindIndex(x => x._roomInfo.Name == info.Name);
+                if(index != -1)
+                {
+                    Destroy(_listing[index].gameObject);
+                    _listing.RemoveAt(index);
+                }
             }
+            //added
+            else
+            {
+                RoomListing listing = Instantiate(_roomListing, _content);
+                if (listing != null)
+                {
+                    listing.SetRoomInfo(info);
+                    _listing.Add(listing);
+                }
+            }
+                
                 
         }
 
-          
+        //
+        print("Recibí actualización de salas: " + roomList.Count + " salas.");
 
-
+        foreach (RoomInfo info in roomList)
+        {
+            print("Sala detectada: " + info.Name);
+           
+        }
+        //
         // base.OnRoomListUpdate(roomList);
         /*        //base.OnRoomListUpdate(roomList);
                 foreach (Transform child in _content)
