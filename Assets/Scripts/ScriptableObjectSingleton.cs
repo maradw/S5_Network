@@ -11,20 +11,21 @@ public abstract class ScriptableObjectSingleton<T> : ScriptableObject where T : 
             if (_instance == null)
             {
                 T[] results = Resources.FindObjectsOfTypeAll<T>();
+                Debug.Log(typeof(T).Name + " encontrados en Resources: " + results.Length);
                 if (results.Length == 0)
                 {
-                    Debug.LogError("SingletonScriptableObject: Results length is 0 of " + typeof(T).ToString());
+                    Debug.LogError("SingletonScriptableObject: No se encontró instancia de " + typeof(T).ToString());
                     return null;
                 }
                 if (results.Length > 1)
                 {
-                    Debug.LogError("SingletonScriptableObject: Results length is greater than 1 of " + typeof(T).ToString());
+                    Debug.LogError("SingletonScriptableObject: Hay más de una instancia de " + typeof(T).ToString());
                     return null;
                 }
                 _instance = results[0];
-               // _instance.hideFlags = HideFlags.DontUnloadUnusedAsset;
             }
             return _instance;
         }
     }
+
 }

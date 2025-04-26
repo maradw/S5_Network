@@ -13,6 +13,11 @@ public class TestC : MonoBehaviourPunCallbacks
         PhotonNetwork.GameVersion = MasterManager.GameSettings.GameVersion; //
         PhotonNetwork.ConnectUsingSettings();
     }
+    private void Update()
+    {
+      //  Debug.Log("ola");
+    }
+    
     public override void OnConnectedToMaster()
     {
         print("coneccted");

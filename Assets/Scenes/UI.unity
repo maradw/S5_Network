@@ -753,7 +753,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1248410224}
   m_HandleRect: {fileID: 1248410223}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1500,6 +1500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1433350255}
+  - component: {fileID: 1433350256}
   m_Layer: 0
   m_Name: CreateRoom
   m_TagString: Untagged
@@ -1528,6 +1529,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1433350256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433350254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd62c25b49fb21343a296c7dbd2097c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomName: {fileID: 1132617551}
 --- !u!1 &1441401278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,8 +2005,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1628372921}
+  - component: {fileID: 1628372922}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TestGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2013,6 +2028,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1628372922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628372920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd41e400a72c64f4caa070bb979fad68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1791800705
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,7 +2122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1791800708}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1433350256}
+        m_TargetAssemblyTypeName: CreateRoomMenu, Assembly-CSharp
+        m_MethodName: OnClick_CreateRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1791800708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2616,5 +2655,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 920821635}
   - {fileID: 2051241336}
-  - {fileID: 1628372921}
   - {fileID: 2075543047}
+  - {fileID: 1628372921}
