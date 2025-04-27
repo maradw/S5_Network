@@ -8,22 +8,17 @@ using UnityEngine.UI;
 
 public class CreateRoomMenu : MonoBehaviourPunCallbacks
 {
-    /*[SerializeField]
-    private GameObject createRoomPanel;
-    [SerializeField]
-    private GameObject roomListPanel;
-    [SerializeField]
-    private GameObject roomInfoPanel;
-    [SerializeField]
-    private GameObject roomListItemPrefab;
-    [SerializeField]
-    private Transform roomListContent;
-    [SerializeField]
-    private TextMeshProUGUI roomNameText;*/
+
 
     [SerializeField]
     private TextMeshProUGUI  roomName;
 
+    private RoomCanvases _roomCanvases;
+    
+    public void FirstInitialize(RoomCanvases canvas)
+    {
+        _roomCanvases = canvas;
+    }
    
     public void OnClick_CreateRoom() 
     {
@@ -42,6 +37,7 @@ public class CreateRoomMenu : MonoBehaviourPunCallbacks
     {
         //base.OnCreatedRoom();
         Debug.Log("Room Created " + roomName.text);
+        _roomCanvases._CurrentRoom.Show();
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message) 

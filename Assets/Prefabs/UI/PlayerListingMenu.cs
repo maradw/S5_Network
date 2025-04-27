@@ -1,0 +1,48 @@
+using Photon.Realtime;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Photon.Pun;
+
+public class PlayerListingMenu : MonoBehaviourPunCallbacks
+{
+    [SerializeField]
+    private Transform _content;
+    [SerializeField]
+    private PlayerListing _playerListing;
+
+    private List<PlayerListing> _listing = new List<PlayerListing>();
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+       // base.OnPlayerEnteredRoom(newPlayer);
+        PlayerListing listing = Instantiate(_playerListing, _content);
+        if (listing != null)
+        {
+            listing.SetPlayerInfo(newPlayer);
+            _listing.Add(listing);
+        }
+    }
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        //base.OnPlayerLeftRoom(otherPlayer);
+
+        int index = _listing.FindIndex(x => x._Player == otherPlayer);
+        if (index != -1)
+        {
+            Destroy(_listing[index].gameObject);
+            _listing.RemoveAt(index);
+        }
+    }
+
+    /* //
+     print("Recibí actualización de salas: " + roomList.Count + " salas.");
+
+     foreach (RoomInfo info in roomList)
+     {
+         print("Sala detectada: " + info.Name);
+
+     }
+
+ }*/
+}
