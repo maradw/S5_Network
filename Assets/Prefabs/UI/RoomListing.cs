@@ -10,7 +10,7 @@ public class RoomListing : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI _text;
-    private RoomInfo _player;
+    
     public RoomInfo _roomInfo { get; private set; }
     
     public void SetRoomInfo(RoomInfo roomInfo)
@@ -20,7 +20,7 @@ public class RoomListing : MonoBehaviour
     }
     public void OnClick_Button()
     {
-        PhotonNetwork.JoinRoom(RoomInfo.Name);
+        PhotonNetwork.JoinRoom(_roomInfo.Name);
     }
 
 

@@ -9,7 +9,8 @@ public class TestC : MonoBehaviourPunCallbacks
     private void Start()
     {
         print("Conect");
-        PhotonNetwork.NickName =MasterManager.GameSettings.NickName;
+        PhotonNetwork.NickName = PlayerPrefs.GetString("PlayerName", "Player" + Random.Range(1000, 9999));
+
         PhotonNetwork.GameVersion = MasterManager.GameSettings.GameVersion; //
         PhotonNetwork.ConnectUsingSettings();
     }
@@ -22,7 +23,12 @@ public class TestC : MonoBehaviourPunCallbacks
     {
         print("coneccted");
         print(PhotonNetwork.LocalPlayer.NickName);
-        PhotonNetwork.JoinLobby();
+        if(!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+            print("funciona hasta aqui");
+        }
+        
     }
     public override void OnDisconnected(DisconnectCause cause)
     {
