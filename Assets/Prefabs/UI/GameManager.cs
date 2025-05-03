@@ -46,9 +46,10 @@ public class GameManager : MonoBehaviourPunCallbacks
        // SceneManager.sceneLoaded -= OnSceneLoaded;
     }
        
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "YourSceneName") ;
+        SceneManager.LoadSceneAsync("CharacterSelection", LoadSceneMode.Single);
+
     }
        
        

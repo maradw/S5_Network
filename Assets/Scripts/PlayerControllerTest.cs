@@ -1,48 +1,38 @@
+﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 using UnityEngine.Rendering;
 
 
-
-public class PlayerController : MonoBehaviour
+public class PlayerControllerTest : MonoBehaviour
 {
     private float _horizontal;
     private float _vertical;
     private float _rotation = 3f;
     [SerializeField] private Rigidbody myRBD;
     [SerializeField] private float velocityModifier = 5f;
-   // [SerializeField] private NPCNavMovement NPC;
+    
 
     private Vector3 position;
     public int _playerLife = 50;
     public void OnMovement(InputAction.CallbackContext move)
-    {
+    { 
+        Debug.Log("O causa");
         _horizontal = move.ReadValue<Vector2>().x;
         _vertical = move.ReadValue<Vector2>().y;
         position = new Vector3(_horizontal, 0, _vertical);
         if (position != Vector3.zero)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(position), _rotation );
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(position), _rotation);
         }
-        Debug.Log("ocausa");
+
     }
     public void OnShoot(InputAction.CallbackContext shoot)
     {
 
     }
-    
-    private void Start()
-    {
-        Debug.Log("PlayerController Start");
-    }
-    public void Interact(InputAction.CallbackContext interact)
-    {
-        //NPC.CallInteract();
-    }
+   
     public void FixedUpdate()
     {
         myRBD.velocity = new Vector3(_horizontal * velocityModifier, myRBD.velocity.y, _vertical * velocityModifier);
@@ -72,15 +62,16 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    private void OnTriggerEnter(Collider other)
+    public void TestMovement(InputAction.CallbackContext ctx)
     {
-        if (other.tag == "Portal")
-        {
-          //  GameManager.Instance.ChangeScene("Main Game");
-        }
+        Debug.Log("💥 Movimiento detectado");
     }
     void Update()
     {
-        Debug.Log("wazaaaaaaa");//DetectEnemy();
+        //DetectEnemy();
+        Debug.Log("yaraaaaaa");
     }
 }
+
+
+
